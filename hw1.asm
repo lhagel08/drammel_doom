@@ -14,16 +14,14 @@
 	TheSum: .word 0
 	
 .text
-	#li $t0, insertFirstNum
-	#li $t1, insSecNum
 	
 	#prints out greeting
+	li $v0, 4
 	la $a0, greeting
-	li $a0, 4
 	syscall
 		
+	li $v0, 4
 	la $a0, promtPrima
-	li $a0, 4
 	syscall
 	
 	#take in first variable and move it to a proper register
@@ -31,25 +29,27 @@
 	syscall
 	move $t0, $v0
 	
-		
+
+	#prompt and take in second variable
+	li $v0, 4
 	la $a0, promptTwo
-	li $a0, 4
 	syscall
-		
+	
 	li $v0, 5
 	syscall
 	move $t1, $v0
-	
-	add $t2, $t1, $t0
-	
 
-	
-	
-	li $v0, 4       # load syscall print int into $v0
-    move $a0, $t2   #move the number to print into $a0
-    li, $v0,1
-    la, $a0, $t2
-    syscall
+
+	add $t2, $t0, $t1
+
+	li $v0, 4
+	la $a0, SumMessage
+	syscall
+
+	li $v0, 1
+	add $a0, $t2 ,$zero
+	syscall
+
 	#Eo programm syscall
 	li $v0, 10   
         syscall
